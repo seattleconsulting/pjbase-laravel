@@ -27,7 +27,7 @@ interface TaskDaoInterface
      * タスクを表示する
      *
      * @param $id
-     * @return \Illuminate\Http\Response
+     * @return \App\Models\Task
      */
     public function getTaskByid($id);
         

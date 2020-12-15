@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'task'], function () {
-    Route::get('/list', 'Task\TaskController@getAllList')->name('task#getAllList');
-    Route::post('/create', 'Task\TaskController@create')->name('task#create');
-    Route::get('/getTask/{id}', 'Task\TaskController@getTaskByid')->name('task#getTaskByid');
-    Route::get('/edit', 'Task\TaskController@edit')->name('task#edit');
-    Route::get('/delete/{id}', 'Task\TaskController@delete')->name('task#delete');
+Route::group(['middleware' => 'cors'], function () {
+    Route::group(['prefix' => 'task'], function () {
+        Route::get('/list', 'Task\TaskController@getAllList')->name('task#getAllList');
+        Route::post('/create', 'Task\TaskController@create')->name('task#create');
+        Route::get('/getTask/{id}', 'Task\TaskController@getTaskByid')->name('task#getTaskByid');
+        Route::get('/edit', 'Task\TaskController@edit')->name('task#edit');
+        Route::get('/delete/{id}', 'Task\TaskController@delete')->name('task#delete');
+    });
 });

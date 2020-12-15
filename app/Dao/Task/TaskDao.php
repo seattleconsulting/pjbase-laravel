@@ -19,7 +19,9 @@ class TaskDao implements TaskDaoInterface
      */
     public function getAllList()
     {
-        return Task::all();
+        return Task::select('id', 'task_name')
+            ->where('del_flg', '!=', 1)
+            ->get();
     }
         
     /**

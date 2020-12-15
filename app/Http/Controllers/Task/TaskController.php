@@ -53,8 +53,8 @@ class TaskController extends Controller
     /**
      * タスクを表示する
      *
-     * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \App\Models\Task
      */
     public function getTaskByid($id)
     {
@@ -75,11 +75,11 @@ class TaskController extends Controller
     /**
      * タスクを削除する
      *
-     * @param Request $request
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request)
+    public function delete($id)
     {
-        return $this->taskServiceInterface->delete($request->id);
+        return $this->taskServiceInterface->delete($id);
     }
 }
