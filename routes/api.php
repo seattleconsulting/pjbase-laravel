@@ -15,6 +15,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'cors'], function () {
+
+    /**
+      * Login,Logout
+      */
+    Route::post('/login', 'Auth\LoginController@login')->name('login');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
+    /**
+      * Register
+      */
+    Route::post('/register', 'Auth\RegisterController@register')->name('register');
+        
+    /**
+     * Task CRUD
+     */
     Route::group(['prefix' => 'task'], function () {
         Route::get('/list', 'Task\TaskController@getAllList')->name('task#getAllList');
         Route::post('/create', 'Task\TaskController@create')->name('task#create');

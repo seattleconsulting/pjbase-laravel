@@ -100,7 +100,9 @@ server {
 
 #### Run the migration files
 
-- docker exec -it pjbase-laravel_app_1 php artisan migrate
+- docker-compose exec app bash
+- cd ../
+- php artisan migrate 
 
 #### Run on browser
  

@@ -20,9 +20,13 @@ class AppServiceProvider extends ServiceProvider
         $baseUrlService = 'App\Services';
 
         // Dao Registration
+        $this->app->bind($baseUrlDaoInterface . '\Auth\RegisterDaoInterface', $baseUrlDao . '\Auth\RegisterDao');
+        $this->app->bind($baseUrlDaoInterface . '\Auth\LoginDaoInterface', $baseUrlDao . '\Auth\LoginDao');
         $this->app->bind($baseUrlDaoInterface . '\Task\TaskDaoInterface', $baseUrlDao . '\Task\TaskDao');
         
         // Business logic registration
+        $this->app->bind($baseUrlServiceInterface . '\Auth\RegisterServiceInterface', $baseUrlService . '\Auth\RegisterService');
+        $this->app->bind($baseUrlServiceInterface . '\Auth\LoginServiceInterface', $baseUrlService . '\Auth\LoginService');
         $this->app->bind($baseUrlServiceInterface . '\Task\TaskServiceInterface', $baseUrlService . '\Task\TaskService');
     }
 

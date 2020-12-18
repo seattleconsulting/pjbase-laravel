@@ -12,7 +12,7 @@ class Task extends Model
     protected $table = 'task';
 
     /**
-    * Task DBのtaskテーブルのPrimaryKey
+    * Testing DBのtaskテーブルのPrimaryKey
     */
     protected $primaryKey = 'id';
 }
