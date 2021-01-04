@@ -30,11 +30,11 @@ Route::group(['middleware' => 'cors'], function () {
     /**
      * Task CRUD
      */
-    Route::group(['prefix' => 'task'], function () {
-        Route::get('/list', 'Task\TaskController@getAllList')->name('task#getAllList');
-        Route::post('/create', 'Task\TaskController@create')->name('task#create');
-        Route::get('/getTask/{id}', 'Task\TaskController@getTaskByid')->name('task#getTaskByid');
-        Route::get('/edit', 'Task\TaskController@edit')->name('task#edit');
-        Route::get('/delete/{id}', 'Task\TaskController@delete')->name('task#delete');
+    Route::group(['prefix' => 'tasks'], function () {
+        Route::get('', 'Task\TaskController@getAllList')->name('task#getAllList');
+        Route::post('', 'Task\TaskController@create')->name('task#create');
+        Route::get('/{id}', 'Task\TaskController@getTaskByid')->name('task#getTaskByid');
+        Route::put('', 'Task\TaskController@edit')->name('task#edit');
+        Route::delete('/{id}', 'Task\TaskController@delete')->name('task#delete');
     });
 });
