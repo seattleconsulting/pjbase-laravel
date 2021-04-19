@@ -98,10 +98,16 @@ server {
 
 - docker-compose up -d
 
+※ mysqlが5.7.33以降の場合docker containerが以下のエラーで起動できなかったので、その場合はdocker-compose.ymlの `MYSQL_USER` と `MYSQL_PASSWORD`を指定しなくて大丈夫です。指定したい場合はrootではなく別のUSER名で指定してください！
+```
+2021-03-27 13:16:08+00:00 [ERROR] [Entrypoint]: MYSQL_USER="root", MYSQL_USER and MYSQL_PASSWORD are for configuring a regular user and cannot be used for the root user
+Remove MYSQL_USER="root" and use one of the following to control the root user password:
+省略...
+```
+
 #### Run the migration files
 
 - docker-compose exec app bash
-- cd ../
 - php artisan migrate 
 
 #### Run on browser
@@ -110,3 +116,21 @@ server {
 
 ##### Reference Link
 [Dockerize Laravel](https://www.membersedge.co.jp/blog/laravel-development-environment-with-docker-compose/)
+
+#### 開発環境で確認する場合
+本リポジトリはAPIだけを作っているリポジトリなので、作ったAPIの確認をしたい場合は、以下のリポジトリで呼び出し側の画面を作っているので、そのリポジトリの構築が必要です。
+
+[VueCRUD](https://github.com/seattleconsulting/pjbase-vue)
+
+#### DBの確認をしたい場合は以下のアクセス情報で sequelProやworkbenchなどでもみれます。
+```
+host : 127.0.0.1
+user: root
+password: root
+database: testing
+port: 3301
+```
+
+#### MacOSを使用する方で構築が進まなかった場合はこちらをご参考に！
+
+[MacOSで構築](https://github.com/ayemohmohthu/stocks/blob/master/AboutPhp/installation.md)
