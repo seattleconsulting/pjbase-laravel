@@ -117,8 +117,16 @@ Remove MYSQL_USER="root" and use one of the following to control the root user p
 ##### Reference Link
 [Dockerize Laravel](https://www.membersedge.co.jp/blog/laravel-development-environment-with-docker-compose/)
 
-#### 開発環境で確認する場合
-本リポジトリはAPIだけを作っているリポジトリなので、作ったAPIの確認をしたい場合は、以下のリポジトリで呼び出し側の画面を作っているので、そのリポジトリの構築が必要です。
+### 開発環境で確認する場合
+#### 1. 本リポジトリで実装されているAPI一覧を画面で確認する方法
+プロジェクトディレクトリ直下に以下のコマンドを実行してSwaggerAPIドキュメントを作成する
+ - php artisan l5-swagger:generate
+ 
+Browserで画面を叩いて確認する
+ - http://localhost:8000/api/swagger
+
+#### 2. 本リポジトリで実装されているAPIを使っているFront画面で確認する方法
+本リポジトリはAPIだけを作っていて、以下のリポジトリで呼び出し側の画面を作っているので、そのリポジトリの構築が必要です。
 
 [VueCRUD](https://github.com/seattleconsulting/pjbase-vue)
 
