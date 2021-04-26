@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
  * @パッケージ : Task
  * @システム名 : pjbase-laravel案件
  */
+/**
+ * @OA\Info(
+ *    title="Your super  ApplicationAPI",
+ *    version="1.0.0",
+ * )
+ */
 class TaskController extends Controller
 {
     /**
@@ -28,10 +34,21 @@ class TaskController extends Controller
     {
         $this->taskServiceInterface = $taskServiceInterface;
     }
-        
+     
     /**
      * タスク一覧を表示する
-     *
+     * @OA\Get(
+     *      path="/api/tasks",
+     *      operationId="getTaskList",
+     *      tags={"Tasks"},
+     *      summary="Get list of tasks",
+     *      description="Returns list of tasks",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/Task")
+     *       )
+     *     )
      * @return \App\Models\Task
      */
     public function getAllList()
@@ -41,6 +58,32 @@ class TaskController extends Controller
         
     /**
      * タスクを作成する
+     * @OA\Post(
+     *      path="/api/tasks",
+     *      operationId="createTask",
+     *      tags={"Tasks"},
+     *      summary="Create new task",
+     *      description="Returns created task info",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="task_name",
+     *                     description="タスク名",
+     *                     type="string"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/Task")
+     *       )
+     *     )
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
@@ -52,7 +95,27 @@ class TaskController extends Controller
         
     /**
      * タスクを表示する
-     *
+     * @OA\Get(
+     *      path="/api/tasks/{id}",
+     *      operationId="getTaskById",
+     *      tags={"Tasks"},
+     *      summary="Get task info by id",
+     *      description="Returns target task info",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Task id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/Task")
+     *       )
+     *     )
      * @param $id
      * @return \App\Models\Task
      */
@@ -63,6 +126,37 @@ class TaskController extends Controller
         
     /**
      * タスクを編集する
+     * @OA\Put(
+     *      path="/api/tasks",
+     *      operationId="editTask",
+     *      tags={"Tasks"},
+     *      summary="Update task",
+     *      description="Returns updated task info",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="id",
+     *                     description="タスクID",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="task_name",
+     *                     description="タスク名",
+     *                     type="string"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/Task")
+     *       )
+     *     )
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
@@ -74,7 +168,26 @@ class TaskController extends Controller
         
     /**
      * タスクを削除する
-     *
+     * @OA\Delete(
+     *      path="/api/tasks/{id}",
+     *      operationId="removeTask",
+     *      tags={"Tasks"},
+     *      summary="Delete task",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Task id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/Task")
+     *       )
+     *     )
      * @param $id
      * @return \Illuminate\Http\Response
      */

@@ -38,10 +38,39 @@ class LoginController extends Controller
         $this->loginServiceInterface = $loginServiceInterface;
         $this->middleware('guest')->except('logout');
     }
-
         
     /**
      * アプリケーションへのログイン要求を処理する
+     * @OA\Post(
+     *      path="/api/login",
+     *      operationId="login",
+     *      tags={"Users"},
+     *      summary="Login",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="email",
+     *                     description="E-Mail",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     description="パスワード",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/User")
+     *       )
+     *     )
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
